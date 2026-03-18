@@ -438,7 +438,7 @@
 
     // Pre-select package from URL
     const pkg = new URLSearchParams(location.search).get('package');
-    const pkgMap = { spark: 'Spark — 1 Min ($10)', ignite: 'Ignite — 2 Min ($20)', custom: 'Custom — Other'};
+    const pkgMap = { spark: 'Spark — 1 Min ($10)', ignite: 'Ignite — 2 Min ($20)', custom: 'Custom Other'};
     if (pkg && pkgMap[pkg]) document.getElementById('package').value = pkgMap[pkg];
 
     // Add _next redirect field dynamically
