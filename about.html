@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — BeatForge</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      padding: 130px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-orb {
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(40, 199, 250, 0.1), transparent 65%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* ── ABOUT GRID ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* photo / profile card */
+    .profile-card {
+      padding: 32px;
+      position: sticky;
+      top: 90px;
+    }
+
+    .avatar-box {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(124, 92, 255, 0.22), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(40, 199, 250, 0.15), transparent 40%),
+        linear-gradient(135deg, #0f1630, #141e40);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--dim);
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar-box-icon {
+      font-size: 3.5rem;
+      opacity: 0.6;
+    }
+
+    .avatar-badge {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      background: linear-gradient(135deg, var(--accent), var(--cyan));
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(124, 92, 255, 0.35);
+    }
+
+    .avatar-badge-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+
+    .avatar-badge-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      opacity: 0.8;
+      letter-spacing: 0.04em;
+    }
+
+    /* right column */
+    .about-body-col {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .bio-card {
+      padding: 32px;
+    }
+
+    .bio-card h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin: 12px 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .bio-card p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .bio-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .bio-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    /* skills */
+    .skills-card {
+      padding: 32px;
+    }
+
+    .skills-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .skills-card>p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .skill-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skill-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .skill-label-row span:last-child {
+      color: var(--dim);
+    }
+
+    .skill-track {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .skill-row.animated .skill-fill {
+      width: var(--pct);
+    }
+
+    /* gear */
+    .gear-card {
+      padding: 32px;
+    }
+
+    .gear-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .gear-card>p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .gear-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.83rem;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .gear-item:hover {
+      border-color: rgba(124, 92, 255, 0.3);
+      color: var(--text);
+    }
+
+    .gear-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 860px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        position: static;
+      }
+
+      .avatar-box {
+        aspect-ratio: 16/9;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="site-nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">♪</div>
+        <span>BeatForge</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-orb"></div>
+      <div class="wrap">
+        <span class="eyebrow reveal">About Me</span>
+        <h1 class="display reveal reveal-d1" style="margin-top:16px; max-width:700px;">
+          The producer<br />
+        </h1>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="about-layout">
+          <!-- Right column -->
+          <div class="about-body-col">
+            <div class="bio-card card reveal">
+              <span class="eyebrow eyebrow-purple">My Story</span>
+              <h2>My Background</h2>
+              <p> I am a student living in Canada who has a deep passion for recording and composing various genres of
+                music. I would love to make a song for you!
+                <br><br>All human made, no AI.</br>
+              </p>
+              <div class="bio-tags">
+                <span class="tag tag-purple">🎵 Human Composition</span>
+                <span class="tag tag-cyan">🎚️ Original Production</span>
+              </div>
+              <div style="margin-top: 24px;">
+                <a href="contact.html" class="btn btn-primary">Work With Me</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="logo">
+        <div class="logo-icon">♪</div><span>BeatForge</span>
+      </div>
+      <nav class="footer-links">
+        <a href="work.html">Work</a><a href="about.html">About</a>
+        <a href="shop.html">Shop</a><a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2026 BeatForge. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Skill bar animation on scroll
+    const skillObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-row').forEach(row => row.classList.add('animated'));
+          skillObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.skills-card').forEach(el => skillObs.observe(el));
+  </script>
+</body>
+
+</html>
