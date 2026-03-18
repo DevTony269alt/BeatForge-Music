@@ -403,7 +403,7 @@
     // Pre-highlight from URL
     const pkg = new URLSearchParams(location.search).get('package');
     if (pkg) {
-      const map = { spark: 0, ignite: 1, blaze: 2, inferno: 3, epic: 4 };
+      const map = { spark: 0, ignite: 1, custom: 2};
       const cards = document.querySelectorAll('.price-card');
       if (map[pkg] !== undefined && cards[map[pkg]]) {
         cards[map[pkg]].scrollIntoView({ behavior: 'smooth', block: 'center' });
