@@ -356,8 +356,8 @@
                 <label for="package">Package *</label>
                 <select id="package" name="package" required>
                   <option value="" disabled selected>Select a package…</option>
-                  <option value="Spark — 1 Min ($10)">⚡ Basic — 1 Minute — $10</option>
-                  <option value="Ignite — 2 Min ($20)">🔥 Premium — 2 Minutes — $20</option>
+                  <option value="Basic — 1 Min ($10)">⚡ Basic — 1 Minute — $10</option>
+                  <option value="Premium — 2 Min ($20)">🔥 Premium — 2 Minutes — $20</option>
                   <option value="Custom Quote">🎯 Custom — Other</option>
                 </select>
               </div>
@@ -438,7 +438,7 @@
 
     // Pre-select package from URL
     const pkg = new URLSearchParams(location.search).get('package');
-    const pkgMap = { spark: 'Spark — 1 Min ($10)', ignite: 'Ignite — 2 Min ($20)', custom: 'Custom Quote'};
+    const pkgMap = { basic: 'Basic — 1 Min ($10)', premium: 'Premium — 2 Min ($20)', custom: 'Custom Quote'};
     if (pkg && pkgMap[pkg]) document.getElementById('package').value = pkgMap[pkg];
 
     // Add _next redirect field dynamically
