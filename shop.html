@@ -328,7 +328,7 @@
               <li>1 revision included</li>
               <li>1-2 weeks delivery</li>
             </ul>
-            <a href="contact.html?package=spark" class="btn btn-secondary">Order Basic</a>
+            <a href="contact.html?package=basic" class="btn btn-secondary">Order Basic</a>
           </article>
 
           <article class="price-card card featured reveal reveal-d1"
@@ -346,7 +346,7 @@
               <li>2 revisions included</li>
               <li>1-2 weeks delivery</li>
             </ul>
-            <a href="contact.html?package=ignite" class="btn btn-primary">Order Premium</a>
+            <a href="contact.html?package=premium" class="btn btn-primary">Order Premium</a>
           </article>
 
           <article class="price-card card reveal">
@@ -403,7 +403,7 @@
     // Pre-highlight from URL
     const pkg = new URLSearchParams(location.search).get('package');
     if (pkg) {
-      const map = { spark: 0, ignite: 1, custom: 2};
+      const map = { basic: 0, premium: 1, custom: 2};
       const cards = document.querySelectorAll('.price-card');
       if (map[pkg] !== undefined && cards[map[pkg]]) {
         cards[map[pkg]].scrollIntoView({ behavior: 'smooth', block: 'center' });
